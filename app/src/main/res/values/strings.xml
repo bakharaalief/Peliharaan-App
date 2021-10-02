@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PeliharaanApp</string>
+    <string name="log_in">LOG IN</string>
+    <string name="tidak_punya_akun">Tidak Punya Akun ?</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
 </resources>
