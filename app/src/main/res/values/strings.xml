@@ -5,4 +5,7 @@
     <string name="register">Register</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
+    <string name="name">Nama</string>
+    <string name="halo">Halo</string>
+    <string name="add_pet">Add Pet</string>
 </resources>

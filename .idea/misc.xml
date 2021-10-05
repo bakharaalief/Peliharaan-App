@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2657407407407407" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_dashboard.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_main.xml" value="0.259375" />
-        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_register.xml" value="0.259375" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_register.xml" value="0.2" />
       </map>
     </option>
   </component>

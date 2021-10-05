@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "214817708674",
+    "project_id": "peliharaan-app",
+    "storage_bucket": "peliharaan-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214817708674:android:7060d284620c5ed63ef29b",
+        "android_client_info": {
+          "package_name": "com.bakharaalief.peliharaanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214817708674-72atq0bq6jqkshc9uod31p9sait2vjsr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGK1n6jnmOKHEJbRL9iJDOXIdEmvKwL_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214817708674-72atq0bq6jqkshc9uod31p9sait2vjsr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
