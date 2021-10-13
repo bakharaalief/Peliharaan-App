@@ -3,7 +3,6 @@ package com.bakharaalief.peliharaanapp.UI;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -11,10 +10,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bakharaalief.peliharaanapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -76,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         boolean nameBenar = true, emailBenar = true, passwordBenar = true;
 
         if(Objects.requireNonNull(nameField.getEditText()).length() == 0){
-            nameField.setError("Tidak Boleh Kosong");
+            nameField.setError(getString(R.string.not_empty_text));
             nameBenar = false;
         }
         else{
@@ -84,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if(Objects.requireNonNull(emailField.getEditText()).length() == 0){
-            emailField.setError("Tidak Boleh Kosong");
+            emailField.setError(getString(R.string.not_empty_text));
             emailBenar = false;
         }
         else if(!isEmailValid(Objects.requireNonNull(emailField.getEditText()).getText().toString())){
@@ -96,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if(Objects.requireNonNull(passwordField.getEditText()).length() == 0){
-            passwordField.setError("Tidak Boleh Kosong");
+            passwordField.setError(getString(R.string.not_empty_text));
             passwordBenar = false;
         }
         else if(Objects.requireNonNull(passwordField.getEditText()).length() < 6){

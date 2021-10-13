@@ -1,5 +1,6 @@
 package com.bakharaalief.peliharaanapp.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bakharaalief.peliharaanapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,6 +33,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         //set view
         ImageView settingButton = findViewById(R.id.setting_button);
         TextView nameText = findViewById(R.id.user_name);
+        MaterialButton addPetButton = findViewById(R.id.add_pet_button);
 
         //set firebase
         mAuth = FirebaseAuth.getInstance();
@@ -53,8 +56,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 });
 
         settingButton.setOnClickListener(this);
+        addPetButton.setOnClickListener(this);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -63,6 +68,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 Intent loginIntent = new Intent(this, LoginActivity.class);
                 startActivity(loginIntent);
                 finish();
+                break;
+
+            case R.id.add_pet_button:
+                Intent addPetIntent = new Intent(this, AddPetActivity.class);
+                startActivity(addPetIntent);
                 break;
         }
     }

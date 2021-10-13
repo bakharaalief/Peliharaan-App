@@ -8,4 +8,8 @@
     <string name="name">Nama</string>
     <string name="halo">Halo</string>
     <string name="add_pet">Add Pet</string>
+    <string name="pet_name">Name Hewan</string>
+    <string name="pet_type">Type Hewan</string>
+    <string name="pet_birth">Tanggal Lahir Hewan</string>
+    <string name="not_empty_text">Tidak Boleh Kosong</string>
 </resources>
