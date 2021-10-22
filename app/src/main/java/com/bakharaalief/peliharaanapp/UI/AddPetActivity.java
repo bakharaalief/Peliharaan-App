@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -16,10 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bakharaalief.peliharaanapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -37,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TimeZone;
+import java.util.function.Consumer;
 
 public class AddPetActivity extends AppCompatActivity implements DatePicker.OnDateChangedListener {
 
@@ -72,18 +71,23 @@ public class AddPetActivity extends AppCompatActivity implements DatePicker.OnDa
 
         //set type data
         ArrayList<String> items = new ArrayList<String>();
-        db.collection("animals")
+        db.collection("types")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                items.add(document.getId());
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        queryDocumentSnapshots.forEach(new Consumer<QueryDocumentSnapshot>() {
+                            @Override
+                            public void accept(QueryDocumentSnapshot queryDocumentSnapshot) {
+                                items.add(queryDocumentSnapshot.getId());
                             }
-                        } else {
-                            Log.d("wadaw", "get error pet data ", task.getException());
-                        }
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        items.add("Not Found");
                     }
                 });
 
@@ -175,7 +179,7 @@ public class AddPetActivity extends AppCompatActivity implements DatePicker.OnDa
 
         Map<String, Object> petData = new HashMap<>();
         petData.put("name", nameData);
-        petData.put("email", typeData);
+        petData.put("type", typeData);
         petData.put("birth", birthData);
 
         //add data to firestore

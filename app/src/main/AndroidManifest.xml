@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PeliharaanApp">
         <activity
+            android:name=".UI.DetailPetActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.AddPetActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.DashboardActivity"
+            android:name=".UI.dashboard.DashboardActivity"
             android:exported="true" />
         <activity
             android:name=".UI.RegisterActivity"
