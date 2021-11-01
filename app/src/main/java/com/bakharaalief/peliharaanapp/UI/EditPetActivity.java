@@ -12,11 +12,13 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
 import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
+import com.bakharaalief.peliharaanapp.UI.detail_pet.DetailPetActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -56,7 +58,7 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
         nameField = findViewById(R.id.pet_name_field);
         typeField = findViewById(R.id.pet_type_field);
         birthField = findViewById(R.id.pet_birth_field);
-        MaterialButton addPetButton = findViewById(R.id.add_pet_button);
+        MaterialButton editPetButton = findViewById(R.id.edit_pet_button);
 
         //set firebase
         mAuth = FirebaseAuth.getInstance();
@@ -114,7 +116,7 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
         });
 
         //add pet button
-        addPetButton.setOnClickListener(new View.OnClickListener() {
+        editPetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(checkForm()) editPet();
@@ -209,8 +211,15 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(EditPetActivity.this, "Gagal Mengupdate Hewan", Toast.LENGTH_SHORT).show();
+                        dialogBox("Gagal Mengupdate Peliharaan", "Anda Gagal Mengupdate Peliharaan");
                     }
                 });
+    }
+
+    private void dialogBox(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditPetActivity.this);
+        builder.setTitle(title).setMessage(message);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

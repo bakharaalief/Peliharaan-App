@@ -1,6 +1,7 @@
-package com.bakharaalief.peliharaanapp.UI;
+package com.bakharaalief.peliharaanapp.UI.detail_pet;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -8,10 +9,12 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
+import com.bakharaalief.peliharaanapp.UI.EditPetActivity;
 import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,7 +65,7 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
                 edit();
                 break;
             case R.id.delete_menu:
-                delete();
+                dialogBoxAction("Menghapus Peliharaan", "Anda Yakin Ingin Menghapus Peliharaan ?");
                 break;
         }
         return true;
@@ -85,5 +88,23 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
         Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void dialogBoxAction(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(DetailPetActivity.this);
+        builder.setTitle(title).setMessage(message);
+        builder.setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                delete();
+            }
+        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

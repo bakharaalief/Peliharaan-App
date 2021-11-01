@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
-import com.bakharaalief.peliharaanapp.UI.DetailPetActivity;
+import com.bakharaalief.peliharaanapp.UI.detail_pet.DetailPetActivity;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;

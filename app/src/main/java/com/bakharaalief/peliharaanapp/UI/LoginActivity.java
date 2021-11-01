@@ -111,13 +111,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-
-                        builder.setMessage("Silahkan Cek Email atau Password Anda Kembali :(")
-                                .setTitle("Login Gagal");
-
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
+                        dialogBox("Login Gagal", "Silahkan Cek Email atau Password Anda Kembali");
                     }
                 });
+    }
+
+    private void dialogBox(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle(title).setMessage(message);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

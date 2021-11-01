@@ -13,4 +13,5 @@
     <string name="pet_birth">Tanggal Lahir Hewan</string>
     <string name="not_empty_text">Tidak Boleh Kosong</string>
     <string name="update_pet">update pet</string>
+    <string name="add_pet_activity">add activity</string>
 </resources>

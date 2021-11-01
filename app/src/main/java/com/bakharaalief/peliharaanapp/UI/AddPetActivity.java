@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bakharaalief.peliharaanapp.R;
@@ -199,8 +200,15 @@ public class AddPetActivity extends AppCompatActivity implements DatePicker.OnDa
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddPetActivity.this, "Gagal Membuat Hewan", Toast.LENGTH_SHORT).show();
+                        dialogBox("Gagal Membuat Peliharaan", "Anda Gagal Membuat Peliharaan");
                     }
                 });
+    }
+
+    private void dialogBox(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddPetActivity.this);
+        builder.setTitle(title).setMessage(message);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

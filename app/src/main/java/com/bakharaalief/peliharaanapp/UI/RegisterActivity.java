@@ -143,16 +143,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        dialogBox("Register Gagal", "Buat User Gagal :(");
+                        dialogBox("Register Gagal", "Buat User Gagal");
                     }
                 });
     }
 
     private void dialogBox(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-
-        builder.setMessage(title).setTitle(message);
-
+        builder.setTitle(title).setMessage(message);
         AlertDialog dialog = builder.create();
         dialog.show();
     }

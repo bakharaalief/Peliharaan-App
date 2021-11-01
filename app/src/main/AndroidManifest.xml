@@ -13,7 +13,7 @@
             android:name=".UI.EditPetActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.DetailPetActivity"
+            android:name=".UI.detail_pet.DetailPetActivity"
             android:exported="false" />
         <activity
             android:name=".UI.AddPetActivity"
