@@ -8,11 +8,13 @@
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_add_pet.xml" value="0.2" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_dashboard.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_detail_pet.xml" value="0.13385416666666666" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_edit_pet.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_main.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/list_item.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/pet_item.xml" value="0.2518518518518518" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/menu/pet_detail_menu.xml" value="0.259375" />
       </map>
     </option>
   </component>

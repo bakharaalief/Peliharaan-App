@@ -17,7 +17,6 @@ import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
 import com.bakharaalief.peliharaanapp.UI.AddPetActivity;
 import com.bakharaalief.peliharaanapp.UI.LoginActivity;
-import com.bakharaalief.peliharaanapp.UI.dashboard.PetListAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
@@ -50,8 +49,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        ArrayList<Pet> petList = new ArrayList<Pet>();
-
         //getData user
         db.collection("users")
                 .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
@@ -70,6 +67,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 });
 
         //getData pets
+        ArrayList<Pet> petList = new ArrayList<Pet>();
         db.collection("user_pets")
                 .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                 .collection("pets")

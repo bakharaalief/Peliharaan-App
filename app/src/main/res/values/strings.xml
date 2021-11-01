@@ -12,4 +12,5 @@
     <string name="pet_type">Type Hewan</string>
     <string name="pet_birth">Tanggal Lahir Hewan</string>
     <string name="not_empty_text">Tidak Boleh Kosong</string>
+    <string name="update_pet">update pet</string>
 </resources>

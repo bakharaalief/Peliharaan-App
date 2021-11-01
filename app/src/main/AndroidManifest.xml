@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PeliharaanApp">
         <activity
+            android:name=".UI.EditPetActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.DetailPetActivity"
             android:exported="false" />
         <activity
