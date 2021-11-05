@@ -14,9 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
-import com.bakharaalief.peliharaanapp.UI.EditPetActivity;
+import com.bakharaalief.peliharaanapp.UI.dashboard.EditPetActivity;
 import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -36,6 +37,7 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
 
         //set view
         MaterialToolbar topAppbar = findViewById(R.id.topAppBar);
+        MaterialButton addActivityButton = findViewById(R.id.add_pet_activity_button);
 
         //set firebase
         mAuth = FirebaseAuth.getInstance();
@@ -50,6 +52,15 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
             @Override
             public void onClick(View view) {
                 DetailPetActivity.super.onBackPressed();
+            }
+        });
+
+        //add activity button
+        addActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailPetActivity.this, AddPetAktifitasActivity.class);
+                startActivity(intent);
             }
         });
 

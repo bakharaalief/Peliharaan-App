@@ -10,22 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PeliharaanApp">
         <activity
-            android:name=".UI.EditPetActivity"
+            android:name=".UI.detail_pet.AddPetAktifitasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.dashboard.EditPetActivity"
             android:exported="false" />
         <activity
             android:name=".UI.detail_pet.DetailPetActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.AddPetActivity"
+            android:name=".UI.dashboard.AddPetActivity"
             android:exported="true" />
         <activity
             android:name=".UI.dashboard.DashboardActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.RegisterActivity"
+            android:name=".UI.auth.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.LoginActivity"
+            android:name=".UI.auth.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".UI.MainActivity"

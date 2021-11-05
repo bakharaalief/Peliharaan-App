@@ -15,8 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
-import com.bakharaalief.peliharaanapp.UI.AddPetActivity;
-import com.bakharaalief.peliharaanapp.UI.LoginActivity;
+import com.bakharaalief.peliharaanapp.UI.auth.LoginActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;

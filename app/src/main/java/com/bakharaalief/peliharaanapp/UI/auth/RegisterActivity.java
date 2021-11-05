@@ -1,4 +1,4 @@
-package com.bakharaalief.peliharaanapp.UI;
+package com.bakharaalief.peliharaanapp.UI.auth;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

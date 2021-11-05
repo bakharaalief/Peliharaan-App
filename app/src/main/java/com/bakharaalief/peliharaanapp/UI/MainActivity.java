@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bakharaalief.peliharaanapp.R;
+import com.bakharaalief.peliharaanapp.UI.auth.LoginActivity;
 import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

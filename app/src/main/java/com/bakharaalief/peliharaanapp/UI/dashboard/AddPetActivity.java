@@ -1,4 +1,4 @@
-package com.bakharaalief.peliharaanapp.UI;
+package com.bakharaalief.peliharaanapp.UI.dashboard;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -15,16 +15,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
-import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
-import com.bakharaalief.peliharaanapp.UI.detail_pet.DetailPetActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -39,26 +37,25 @@ import java.util.Objects;
 import java.util.TimeZone;
 import java.util.function.Consumer;
 
-public class EditPetActivity extends AppCompatActivity implements DatePicker.OnDateChangedListener {
+public class AddPetActivity extends AppCompatActivity implements DatePicker.OnDateChangedListener {
 
     private TextInputLayout nameField, typeField, birthField;
     private Date birthdate;
     private Calendar calendar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private Pet petDataIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_pet);
+        setContentView(R.layout.activity_add_pet);
 
         //set view
         MaterialToolbar topAppbar = findViewById(R.id.topAppBar);
         nameField = findViewById(R.id.pet_name_field);
         typeField = findViewById(R.id.pet_type_field);
         birthField = findViewById(R.id.pet_birth_field);
-        MaterialButton editPetButton = findViewById(R.id.edit_pet_button);
+        MaterialButton addPetButton = findViewById(R.id.add_pet_button);
 
         //set firebase
         mAuth = FirebaseAuth.getInstance();
@@ -68,7 +65,7 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
         topAppbar.setNavigationOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                EditPetActivity.super.onBackPressed();
+                AddPetActivity.super.onBackPressed();
             }
         });
 
@@ -104,32 +101,24 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
                 birthdate = new Date();
                 calendar = Calendar.getInstance(TimeZone.getDefault());
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        EditPetActivity.this,
-                        EditPetActivity.this::onDateChanged,
+                        AddPetActivity.this,
+                        AddPetActivity.this::onDateChanged,
                         calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)
-                );
+                        );
 
                 datePickerDialog.show();
             }
         });
 
         //add pet button
-        editPetButton.setOnClickListener(new View.OnClickListener() {
+        addPetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkForm()) editPet();
+                if(checkForm()) addPet();
             }
         });
-
-        //get data from intent
-        petDataIntent = this.getIntent().getParcelableExtra(DetailPetActivity.PET_DATA);
-
-        //set data pet to form
-        Objects.requireNonNull(nameField.getEditText()).setText(petDataIntent.getName());
-        Objects.requireNonNull(typeField.getEditText()).setText(petDataIntent.getType());
-        Objects.requireNonNull(birthField.getEditText()).setText(toDateString(petDataIntent.getBirthDate().toDate()));
     }
 
     @Override
@@ -183,7 +172,7 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
         return nameHewanBenar && typeHewanBenar && tanggalLahirHewan;
     }
 
-    private void editPet(){
+    private void addPet(){
         String nameData = Objects.requireNonNull(nameField.getEditText()).getText().toString();
         String typeData = Objects.requireNonNull(typeField.getEditText()).getText().toString();
         Date birthData = birthdate;
@@ -197,13 +186,12 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
         db.collection("user_pets")
                 .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                 .collection("pets")
-                .document(petDataIntent.getUid())
-                .set(petData)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .add(petData)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(EditPetActivity.this, "Hewan Berhasil di Update", Toast.LENGTH_SHORT).show();
-                        Intent dashboardIntent = new Intent(EditPetActivity.this, DashboardActivity.class);
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(AddPetActivity.this, "Berhasil Tambah " + nameData, Toast.LENGTH_SHORT).show();
+                        Intent dashboardIntent = new Intent(AddPetActivity.this, DashboardActivity.class);
                         startActivity(dashboardIntent);
                         finish();
                     }
@@ -211,13 +199,13 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        dialogBox("Gagal Mengupdate Peliharaan", "Anda Gagal Mengupdate Peliharaan");
+                        dialogBox("Gagal Membuat Peliharaan", "Anda Gagal Membuat Peliharaan");
                     }
                 });
     }
 
     private void dialogBox(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(EditPetActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddPetActivity.this);
         builder.setTitle(title).setMessage(message);
         AlertDialog dialog = builder.create();
         dialog.show();
