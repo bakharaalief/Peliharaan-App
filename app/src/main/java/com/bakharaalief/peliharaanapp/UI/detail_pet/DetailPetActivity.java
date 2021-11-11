@@ -4,24 +4,35 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bakharaalief.peliharaanapp.Data.model.Aktifitas;
 import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
-import com.bakharaalief.peliharaanapp.UI.dashboard.EditPetActivity;
 import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
+import com.bakharaalief.peliharaanapp.UI.dashboard.EditPetActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
 
@@ -38,6 +49,7 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
         //set view
         MaterialToolbar topAppbar = findViewById(R.id.topAppBar);
         MaterialButton addActivityButton = findViewById(R.id.add_pet_activity_button);
+        RecyclerView petAktifitasItemRv = findViewById(R.id.pet_item_activity_rv);
 
         //set firebase
         mAuth = FirebaseAuth.getInstance();
@@ -51,7 +63,9 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
         topAppbar.setNavigationOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                DetailPetActivity.super.onBackPressed();
+                Intent intent = new Intent(DetailPetActivity.this, DashboardActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -60,12 +74,63 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetailPetActivity.this, AddPetAktifitasActivity.class);
+                intent.putExtra(PET_DATA, petData);
                 startActivity(intent);
             }
         });
 
         //menu top appbar clickable
         topAppbar.setOnMenuItemClickListener(this::onMenuItemClick);
+
+        //getData pets
+        ArrayList<Aktifitas> petAktifitasList = new ArrayList<Aktifitas>();
+        db.collection("user_pets")
+                .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+                .collection("activities")
+                .document(petData.getUid())
+                .collection("daily")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        queryDocumentSnapshots.forEach(new Consumer<QueryDocumentSnapshot>() {
+                            @Override
+                            public void accept(QueryDocumentSnapshot queryDocumentSnapshot) {
+                                Aktifitas aktifitas = new Aktifitas(
+                                        queryDocumentSnapshot.getId().toString(),
+                                        queryDocumentSnapshot.getTimestamp("date"),
+                                        Objects.requireNonNull(queryDocumentSnapshot.get("type")).toString(),
+                                        Objects.requireNonNull(queryDocumentSnapshot.get("note")).toString()
+                                );
+                                petAktifitasList.add(aktifitas);
+                            }
+                        });
+
+                        PetAktifitasListAdapter aktifitasListPetAdapter = new PetAktifitasListAdapter(petAktifitasList);
+                        petAktifitasItemRv.setAdapter(aktifitasListPetAdapter);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("wadaw", e.toString());
+                    }
+                });
+
+        //all about pet item aktifitas rv
+        PetAktifitasListAdapter aktifitasListPetAdapter = new PetAktifitasListAdapter(petAktifitasList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        petAktifitasItemRv.setLayoutManager(linearLayoutManager);
+        petAktifitasItemRv.setAdapter(aktifitasListPetAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @SuppressLint("NonConstantResourceId")

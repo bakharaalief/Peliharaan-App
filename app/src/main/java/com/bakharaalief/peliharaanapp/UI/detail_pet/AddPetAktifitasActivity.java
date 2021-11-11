@@ -3,6 +3,7 @@ package com.bakharaalief.peliharaanapp.UI.detail_pet;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.format.DateFormat;
@@ -11,17 +12,22 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
+import com.bakharaalief.peliharaanapp.UI.dashboard.AddPetActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -30,6 +36,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.TimeZone;
 import java.util.function.Consumer;
@@ -42,6 +50,7 @@ public class AddPetAktifitasActivity extends AppCompatActivity implements
     private Calendar calendar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private Pet petDataParcel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,9 @@ public class AddPetAktifitasActivity extends AppCompatActivity implements
         noteField = findViewById(R.id.aktifitas_note_field);
         MaterialButton addPetAktifitasButton = findViewById(R.id.add_aktifitas_button);
 
+        //getData from intent
+        petDataParcel = this.getIntent().getParcelableExtra(DetailPetActivity.PET_DATA);
+
         //set firebase
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -66,7 +78,6 @@ public class AddPetAktifitasActivity extends AppCompatActivity implements
                 AddPetAktifitasActivity.super.onBackPressed();
             }
         });
-
 
         //set type data
         ArrayList<String> items = new ArrayList<String>();
@@ -186,34 +197,44 @@ public class AddPetAktifitasActivity extends AppCompatActivity implements
     }
 
     private void addPetAktifitas(){
-//        String nameData = Objects.requireNonNull(nameField.getEditText()).getText().toString();
-//        String typeData = Objects.requireNonNull(typeField.getEditText()).getText().toString();
-//        Date birthData = birthdate;
-//
-//        Map<String, Object> petData = new HashMap<>();
-//        petData.put("name", nameData);
-//        petData.put("type", typeData);
-//        petData.put("birth", birthData);
-//
-//        //add data to firestore
-//        db.collection("user_pets")
-//                .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
-//                .collection("pets")
-//                .add(petData)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Toast.makeText(AddPetActivity.this, "Berhasil Tambah " + nameData, Toast.LENGTH_SHORT).show();
-//                        Intent dashboardIntent = new Intent(AddPetActivity.this, DashboardActivity.class);
-//                        startActivity(dashboardIntent);
-//                        finish();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        dialogBox("Gagal Membuat Peliharaan", "Anda Gagal Membuat Peliharaan");
-//                    }
-//                });
+        String typeData = Objects.requireNonNull(typeField.getEditText()).getText().toString();
+        Date dateData = aktifitasdate;
+        String noteData = Objects.requireNonNull(noteField.getEditText()).getText().toString();
+
+        Map<String, Object> petData = new HashMap<>();
+        petData.put("type", typeData);
+        petData.put("date", dateData);
+        petData.put("note", noteData);
+
+        //add data to firestore
+        db.collection("user_pets")
+                .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+                .collection("activities")
+                .document(petDataParcel.getUid())
+                .collection("daily")
+                .add(petData)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(AddPetAktifitasActivity.this, "Berhasil Tambah Aktifitas" + typeData, Toast.LENGTH_SHORT).show();
+                        Intent detailPetIntent = new Intent(AddPetAktifitasActivity.this, DetailPetActivity.class);
+                        detailPetIntent.putExtra(DetailPetActivity.PET_DATA, petDataParcel);
+                        startActivity(detailPetIntent);
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialogBox("Gagal Membuat Peliharaan", "Anda Gagal Membuat Peliharaan");
+                    }
+                });
+    }
+
+    private void dialogBox(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddPetAktifitasActivity.this);
+        builder.setTitle(title).setMessage(message);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
