@@ -30,7 +30,7 @@ class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            petItemName = (TextView) itemView.findViewById(R.id.pet_item_name);
+            petItemName = itemView.findViewById(R.id.pet_item_name);
             petItem = itemView.findViewById(R.id.pet_item_card);
         }
 

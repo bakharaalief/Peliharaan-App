@@ -97,7 +97,7 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
                             @Override
                             public void accept(QueryDocumentSnapshot queryDocumentSnapshot) {
                                 Aktifitas aktifitas = new Aktifitas(
-                                        queryDocumentSnapshot.getId().toString(),
+                                        queryDocumentSnapshot.getId(),
                                         queryDocumentSnapshot.getTimestamp("date"),
                                         Objects.requireNonNull(queryDocumentSnapshot.get("type")).toString(),
                                         Objects.requireNonNull(queryDocumentSnapshot.get("note")).toString()
@@ -106,7 +106,7 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
                             }
                         });
 
-                        PetAktifitasListAdapter aktifitasListPetAdapter = new PetAktifitasListAdapter(petAktifitasList);
+                        PetAktifitasListAdapter aktifitasListPetAdapter = new PetAktifitasListAdapter(petAktifitasList, petData);
                         petAktifitasItemRv.setAdapter(aktifitasListPetAdapter);
                     }
                 })
@@ -118,7 +118,7 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
                 });
 
         //all about pet item aktifitas rv
-        PetAktifitasListAdapter aktifitasListPetAdapter = new PetAktifitasListAdapter(petAktifitasList);
+        PetAktifitasListAdapter aktifitasListPetAdapter = new PetAktifitasListAdapter(petAktifitasList, petData);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         petAktifitasItemRv.setLayoutManager(linearLayoutManager);

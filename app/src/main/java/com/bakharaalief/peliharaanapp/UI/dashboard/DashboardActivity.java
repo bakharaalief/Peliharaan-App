@@ -78,7 +78,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                             @Override
                             public void accept(QueryDocumentSnapshot queryDocumentSnapshot) {
                                 Pet pet = new Pet(
-                                        queryDocumentSnapshot.getId().toString(),
+                                        queryDocumentSnapshot.getId(),
                                         queryDocumentSnapshot.getTimestamp("birth"),
                                         Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
                                         Objects.requireNonNull(queryDocumentSnapshot.get("type")).toString()

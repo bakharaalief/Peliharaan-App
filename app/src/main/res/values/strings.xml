@@ -25,4 +25,5 @@
     <string name="type_aktifitas">Type Aktifitas</string>
     <string name="notes_activity">Notes Aktifitas</string>
     <string name="date_aktifitas">Tanggal Aktifitas</string>
+    <string name="edit_pet_activity">edit activity</string>
 </resources>
