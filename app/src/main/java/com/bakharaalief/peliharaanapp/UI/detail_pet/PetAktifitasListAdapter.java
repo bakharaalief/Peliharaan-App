@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,12 +36,14 @@ class PetAktifitasListAdapter extends RecyclerView.Adapter<PetAktifitasListAdapt
         private final TextView petAktifitasTime;
         private final TextView petAktifitasDate;
         private final MaterialCardView petItemAktifitas;
+        private final ImageView petAktifitasIcon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             petAktifitasTime = itemView.findViewById(R.id.pet_aktifitas_time);
             petAktifitasDate = itemView.findViewById(R.id.pet_aktifitas_date);
             petItemAktifitas = itemView.findViewById(R.id.pet_aktifitas_item_card);
+            petAktifitasIcon = itemView.findViewById(R.id.pet_aktifitas_icon);
         }
 
         public void setData(Aktifitas data, Pet petData){
@@ -55,6 +58,40 @@ class PetAktifitasListAdapter extends RecyclerView.Adapter<PetAktifitasListAdapt
                     view.getContext().startActivity(intent);
                 }
             });
+            petAktifitasIcon.setImageResource(changeIcon(data.getType()));
+            petItemAktifitas.setCardBackgroundColor(
+                    petItemAktifitas.getContext().getColor(changeColor(data.getType()))
+            );
+        }
+
+        private int changeIcon(String type){
+            int iconId = 0;
+
+            switch (type){
+                case "Bath" :
+                    iconId = R.drawable.bath_icon;
+                    break;
+                case "Eat" :
+                    iconId = R.drawable.eat_icon;
+                    break;
+            }
+
+            return iconId;
+        }
+
+        private int changeColor(String type){
+            int colorId = 0;
+
+            switch (type){
+                case "Bath" :
+                    colorId = R.color.blue;
+                    break;
+                case "Eat" :
+                    colorId = R.color.green;
+                    break;
+            }
+
+            return colorId;
         }
     }
 

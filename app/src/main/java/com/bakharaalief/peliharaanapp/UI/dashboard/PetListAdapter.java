@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,10 +28,12 @@ class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView petItemName;
         private final MaterialCardView petItem;
+        private final ImageView petItemIcon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             petItemName = itemView.findViewById(R.id.pet_item_name);
+            petItemIcon = itemView.findViewById(R.id.pet_item_icon);
             petItem = itemView.findViewById(R.id.pet_item_card);
         }
 
@@ -44,6 +47,28 @@ class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHolder> {
                     view.getContext().startActivity(intent);
                 }
             });
+            petItemIcon.setImageResource(changeIcon(data.getType()));
+        }
+
+        private int changeIcon(String type){
+            int iconId = 0;
+
+            switch (type){
+                case "Cat" :
+                    iconId = R.drawable.cat_icon;
+                    break;
+                case "Dog" :
+                    iconId = R.drawable.dog_icon;
+                    break;
+                case "Fish" :
+                    iconId = R.drawable.fish_icon;
+                    break;
+                case "Bird" :
+                    iconId = R.drawable.bird_icon;
+                    break;
+            }
+
+            return iconId;
         }
     }
 

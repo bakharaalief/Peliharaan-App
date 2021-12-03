@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
-    android:backgroundTint="@color/purple_500"
+    app:cardBackgroundColor="@color/green"
     android:layout_marginBottom="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/pet_aktifitas_date"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/pet_aktifitas_icon"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/pet_aktifitas_time" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/pet_aktifitas_icon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="10dp"

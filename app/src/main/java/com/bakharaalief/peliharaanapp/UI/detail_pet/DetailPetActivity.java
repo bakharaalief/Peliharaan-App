@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -154,16 +155,35 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
     }
 
     private void delete(){
+
+        //colection all activity pet
+        DocumentReference activityDoc = db.collection("user_pets")
+                .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+                .collection("activities")
+                .document(petData.getUid());
+
+        //delete pet data
         db.collection("user_pets")
                 .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                 .collection("pets")
                 .document(petData.getUid())
-                .delete();
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        db.batch().delete(activityDoc);
 
-        Toast.makeText(this, "Delete " + petData.getName(), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, DashboardActivity.class);
-        startActivity(intent);
-        finish();
+                        Toast.makeText(DetailPetActivity.this, "Delete " + petData.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(DetailPetActivity.this, DashboardActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+//        Toast.makeText(this, "Delete " + petData.getName(), Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(this, DashboardActivity.class);
+//        startActivity(intent);
+//        finish();
     }
 
     private void dialogBoxAction(String title, String message){

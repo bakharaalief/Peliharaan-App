@@ -74,6 +74,7 @@ public class EditPetAktifitasActivity extends AppCompatActivity implements
         Objects.requireNonNull(typeField.getEditText()).setText(petAktifitasParcel.getType());
         Objects.requireNonNull(dateField.getEditText()).setText(toDateString(petAktifitasParcel.getAktifitasDate().toDate()));
         Objects.requireNonNull(noteField.getEditText()).setText(petAktifitasParcel.getNote());
+        aktifitasdate = petAktifitasParcel.getAktifitasDate().toDate();
 
         //set firebase
         mAuth = FirebaseAuth.getInstance();

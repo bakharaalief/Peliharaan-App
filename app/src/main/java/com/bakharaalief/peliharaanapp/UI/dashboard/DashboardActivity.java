@@ -70,6 +70,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         db.collection("user_pets")
                 .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                 .collection("pets")
+                .orderBy("name")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
