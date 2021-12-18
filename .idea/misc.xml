@@ -9,21 +9,27 @@
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/drawable/dog_icon.xml" value="0.2755208333333333" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/drawable/eat_icon.xml" value="0.2755208333333333" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/drawable/fish_icon.xml" value="0.2755208333333333" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.2755208333333333" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2657407407407407" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_add_pet.xml" value="0.2" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_add_pet_aktifitas.xml" value="0.2453125" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_add_vaksin.xml" value="0.176" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_dashboard.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_detail_pet.xml" value="0.13385416666666666" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_detail_pet_aktifitas.xml" value="0.259375" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_detail_vaksin.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_edit_pet.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_edit_pet_aktifitas.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_main.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/activity_vaksin.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/fragment_first.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/list_item.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/pet_aktifitas_item.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/pet_item.xml" value="0.2518518518518518" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/layout/pet_vaksin_item.xml" value="0.259375" />
+        <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/menu/pet_detail_aktifitas_menu.xml" value="0.259375" />
         <entry key="..\:/projects/android/PeliharaanApp/app/src/main/res/menu/pet_detail_menu.xml" value="0.259375" />
       </map>
     </option>

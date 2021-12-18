@@ -215,7 +215,7 @@ public class AddPetAktifitasActivity extends AppCompatActivity implements
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(AddPetAktifitasActivity.this, "Berhasil Tambah Aktifitas" + typeData, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPetAktifitasActivity.this, "Berhasil Tambah Aktifitas " + typeData, Toast.LENGTH_SHORT).show();
                         Intent detailPetIntent = new Intent(AddPetAktifitasActivity.this, DetailPetActivity.class);
                         detailPetIntent.putExtra(DetailPetActivity.PET_DATA, petDataParcel);
                         startActivity(detailPetIntent);

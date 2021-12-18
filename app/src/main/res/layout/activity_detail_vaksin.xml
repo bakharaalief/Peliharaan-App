@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.detail_aktifitas.DetailPetAktifitasActivity">
+    tools:context=".UI.vaksin_pet.DetailVaksinActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,9 +16,8 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Detail Aktifitas"
+            app:title="Detail Vaksin"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            app:menu="@menu/pet_detail_aktifitas_menu"
             style="@style/topAppBarStyle"/>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -29,11 +28,11 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
-            android:id="@+id/aktifitas_time"
+            android:id="@+id/vaksin_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:text="11 : 30"
+            android:text="Sinovac"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -43,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/aktifitas_date"
+            android:id="@+id/vaksin_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -54,20 +53,17 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/aktifitas_time" />
+            app:layout_constraintTop_toBottomOf="@+id/vaksin_name" />
 
-        <TextView
-            android:id="@+id/aktifitas_note"
-            android:layout_width="376dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="18dp"
-            android:layout_marginTop="20dp"
-            android:text="Mandi Bareng Dudu"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/aktifitas_date"
-            app:layout_constraintStart_toStartOf="@+id/aktifitas_date"
-            app:layout_constraintTop_toBottomOf="@+id/aktifitas_date" />
+            android:text="@string/delete"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vaksin_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

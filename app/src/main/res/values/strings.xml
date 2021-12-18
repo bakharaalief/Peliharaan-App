@@ -26,4 +26,12 @@
     <string name="notes_activity">Notes Aktifitas</string>
     <string name="date_aktifitas">Tanggal Aktifitas</string>
     <string name="edit_pet_activity">edit activity</string>
+    <string name="title_activity_vaksin">VaksinActivity</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="add_pet_vaksin">add vaksin</string>
+    <string name="nama_vaksin">Nama Vaksin</string>
+    <string name="tanggal_vaksin">Tanggal Vaksin</string>
+    <string name="delete">Delete</string>
 </resources>

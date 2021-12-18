@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PeliharaanApp">
         <activity
+            android:name=".UI.vaksin_pet.DetailVaksinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.vaksin_pet.AddVaksinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.vaksin_pet.VaksinActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.detail_aktifitas.EditPetAktifitasActivity"
             android:exported="false" />
         <activity

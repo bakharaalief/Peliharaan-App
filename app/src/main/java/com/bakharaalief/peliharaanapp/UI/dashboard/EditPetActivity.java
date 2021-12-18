@@ -129,6 +129,8 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
         Objects.requireNonNull(nameField.getEditText()).setText(petDataIntent.getName());
         Objects.requireNonNull(typeField.getEditText()).setText(petDataIntent.getType());
         Objects.requireNonNull(birthField.getEditText()).setText(toDateString(petDataIntent.getBirthDate().toDate()));
+
+        birthdate = petDataIntent.getBirthDate().toDate();
     }
 
     @Override
@@ -185,12 +187,11 @@ public class EditPetActivity extends AppCompatActivity implements DatePicker.OnD
     private void editPet(){
         String nameData = Objects.requireNonNull(nameField.getEditText()).getText().toString();
         String typeData = Objects.requireNonNull(typeField.getEditText()).getText().toString();
-        Date birthData = birthdate;
 
         Map<String, Object> petData = new HashMap<>();
         petData.put("name", nameData);
         petData.put("type", typeData);
-        petData.put("birth", birthData);
+        petData.put("birth", birthdate);
 
         //add data to firestore
         db.collection("user_pets")

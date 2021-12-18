@@ -21,6 +21,7 @@ import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
 import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
 import com.bakharaalief.peliharaanapp.UI.dashboard.EditPetActivity;
+import com.bakharaalief.peliharaanapp.UI.vaksin_pet.VaksinActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -138,6 +139,9 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
+            case R.id.vaksin_menu:
+                vaksin();
+                break;
             case R.id.edit_menu:
                 edit();
                 break;
@@ -146,6 +150,12 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
                 break;
         }
         return true;
+    }
+
+    private void vaksin(){
+        Intent intent = new Intent(this, VaksinActivity.class);
+        intent.putExtra(PET_DATA, petData);
+        startActivity(intent);
     }
 
     private void edit(){
