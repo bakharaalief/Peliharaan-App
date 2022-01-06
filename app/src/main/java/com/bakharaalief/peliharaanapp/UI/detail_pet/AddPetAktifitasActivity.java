@@ -17,9 +17,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
+import com.bakharaalief.peliharaanapp.UI.MainActivity;
 import com.bakharaalief.peliharaanapp.UI.dashboard.AddPetActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -218,6 +221,8 @@ public class AddPetAktifitasActivity extends AppCompatActivity implements
                         Toast.makeText(AddPetAktifitasActivity.this, "Berhasil Tambah Aktifitas " + typeData, Toast.LENGTH_SHORT).show();
                         Intent detailPetIntent = new Intent(AddPetAktifitasActivity.this, DetailPetActivity.class);
                         detailPetIntent.putExtra(DetailPetActivity.PET_DATA, petDataParcel);
+
+                        showNotif();
                         startActivity(detailPetIntent);
                         finish();
                     }
@@ -235,5 +240,18 @@ public class AddPetAktifitasActivity extends AppCompatActivity implements
         builder.setTitle(title).setMessage(message);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void showNotif(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MainActivity.CHANNEL_ID)
+                .setSmallIcon(R.drawable.cat_icon)
+                .setContentTitle("Menambahkan Aktifitas")
+                .setContentText("Berhasil Menambah Aktifitas :)")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                // Set the intent that will fire when the user taps the notification
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, builder.build());
     }
 }

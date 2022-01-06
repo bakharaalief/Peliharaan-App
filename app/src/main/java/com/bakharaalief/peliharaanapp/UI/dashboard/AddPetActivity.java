@@ -14,8 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.bakharaalief.peliharaanapp.R;
+import com.bakharaalief.peliharaanapp.UI.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -191,6 +194,8 @@ public class AddPetActivity extends AppCompatActivity implements DatePicker.OnDa
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(AddPetActivity.this, "Berhasil Tambah " + nameData, Toast.LENGTH_SHORT).show();
                         Intent dashboardIntent = new Intent(AddPetActivity.this, DashboardActivity.class);
+
+                        showNotif();
                         startActivity(dashboardIntent);
                         finish();
                     }
@@ -208,5 +213,18 @@ public class AddPetActivity extends AppCompatActivity implements DatePicker.OnDa
         builder.setTitle(title).setMessage(message);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void showNotif(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MainActivity.CHANNEL_ID)
+                .setSmallIcon(R.drawable.cat_icon)
+                .setContentTitle("Menambahkan Peliharaan")
+                .setContentText("Berhasil Menambah Peliharaan :)")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                // Set the intent that will fire when the user taps the notification
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, builder.build());
     }
 }

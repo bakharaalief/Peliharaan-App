@@ -3,6 +3,8 @@ package com.bakharaalief.peliharaanapp.UI.vaksin_pet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -172,6 +174,8 @@ public class AddVaksinActivity extends AppCompatActivity implements
                         Toast.makeText(AddVaksinActivity.this, "Berhasil Tambah Aktivitas " + nameData, Toast.LENGTH_SHORT).show();
                         Intent vaksinIntent = new Intent(AddVaksinActivity.this, VaksinActivity.class);
                         vaksinIntent.putExtra(DetailPetActivity.PET_DATA, petDataParcel);
+
+                        showNotif();
                         startActivity(vaksinIntent);
                         finish();
                     }
@@ -189,5 +193,18 @@ public class AddVaksinActivity extends AppCompatActivity implements
         builder.setTitle(title).setMessage(message);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void showNotif(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MainActivity.CHANNEL_ID)
+                .setSmallIcon(R.drawable.cat_icon)
+                .setContentTitle("Menambahkan Vaksin")
+                .setContentText("Berhasil Menambah Vaksin :)")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                // Set the intent that will fire when the user taps the notification
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(1, builder.build());
     }
 }

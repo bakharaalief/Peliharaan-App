@@ -1,8 +1,11 @@
 package com.bakharaalief.peliharaanapp.UI.detail_pet;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,12 +16,14 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bakharaalief.peliharaanapp.Data.model.Aktifitas;
 import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.R;
+import com.bakharaalief.peliharaanapp.UI.MainActivity;
 import com.bakharaalief.peliharaanapp.UI.dashboard.DashboardActivity;
 import com.bakharaalief.peliharaanapp.UI.dashboard.EditPetActivity;
 import com.bakharaalief.peliharaanapp.UI.vaksin_pet.VaksinActivity;
@@ -42,6 +47,7 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private Pet petData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
