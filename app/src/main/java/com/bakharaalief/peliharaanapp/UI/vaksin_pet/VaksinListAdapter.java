@@ -15,6 +15,7 @@ import com.bakharaalief.peliharaanapp.Data.model.Pet;
 import com.bakharaalief.peliharaanapp.Data.model.Vaksin;
 import com.bakharaalief.peliharaanapp.R;
 import com.bakharaalief.peliharaanapp.UI.detail_aktifitas.DetailPetAktifitasActivity;
+import com.bakharaalief.peliharaanapp.UI.detail_pet.DetailPetActivity;
 import com.google.android.material.card.MaterialCardView;
 
 import java.text.SimpleDateFormat;
@@ -51,7 +52,7 @@ class VaksinListAdapter extends RecyclerView.Adapter<VaksinListAdapter.ViewHolde
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), DetailVaksinActivity.class);
                     intent.putExtra(DetailVaksinActivity.VAKSIN_DATA, data);
-                    intent.putExtra(DetailPetAktifitasActivity.PET_DATA, petData);
+                    intent.putExtra(DetailPetActivity.PET_DATA, petData);
                     view.getContext().startActivity(intent);
                 }
             });

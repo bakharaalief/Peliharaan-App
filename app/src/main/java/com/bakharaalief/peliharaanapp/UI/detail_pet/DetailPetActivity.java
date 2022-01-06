@@ -189,11 +189,6 @@ public class DetailPetActivity extends AppCompatActivity implements Toolbar.OnMe
                         finish();
                     }
                 });
-
-//        Toast.makeText(this, "Delete " + petData.getName(), Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this, DashboardActivity.class);
-//        startActivity(intent);
-//        finish();
     }
 
     private void dialogBoxAction(String title, String message){
