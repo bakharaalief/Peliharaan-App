@@ -66,6 +66,9 @@ class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHolder> {
                 case "Bird" :
                     iconId = R.drawable.bird_icon;
                     break;
+                default:
+                    iconId = R.drawable.ic_baseline_pets_24;
+                    break;
             }
 
             return iconId;

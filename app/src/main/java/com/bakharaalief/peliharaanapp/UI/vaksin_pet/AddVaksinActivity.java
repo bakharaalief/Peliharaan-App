@@ -171,7 +171,7 @@ public class AddVaksinActivity extends AppCompatActivity implements
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(AddVaksinActivity.this, "Berhasil Tambah Aktivitas " + nameData, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddVaksinActivity.this, "Berhasil Tambah Vaksin " + nameData, Toast.LENGTH_SHORT).show();
                         Intent vaksinIntent = new Intent(AddVaksinActivity.this, VaksinActivity.class);
                         vaksinIntent.putExtra(DetailPetActivity.PET_DATA, petDataParcel);
 

@@ -74,6 +74,9 @@ class PetAktifitasListAdapter extends RecyclerView.Adapter<PetAktifitasListAdapt
                 case "Eat" :
                     iconId = R.drawable.eat_icon;
                     break;
+                default:
+                    iconId = R.drawable.ic_baseline_pets_24;
+                    break;
             }
 
             return iconId;
@@ -88,6 +91,9 @@ class PetAktifitasListAdapter extends RecyclerView.Adapter<PetAktifitasListAdapt
                     break;
                 case "Eat" :
                     colorId = R.color.green;
+                    break;
+                default:
+                    colorId = R.color.purple;
                     break;
             }
 

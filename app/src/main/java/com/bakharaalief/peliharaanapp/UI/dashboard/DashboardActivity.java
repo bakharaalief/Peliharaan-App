@@ -122,4 +122,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }
